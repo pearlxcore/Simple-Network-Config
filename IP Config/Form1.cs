@@ -38,7 +38,9 @@ namespace IP_Config
 
             IP_Config.Properties.Settings.Default.Save();
             panel1.Hide();
-            
+            btnActivateFTP.Enabled = true;
+            btnActivateNormal.Enabled = true;
+           
         }
 
         private void ProfileSettingToolStripMenuItem_Click(object sender, EventArgs e)
