@@ -34,7 +34,9 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.profileSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnSaveConfig = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,9 +47,7 @@
             this.tbGateway = new System.Windows.Forms.TextBox();
             this.tbSubnet = new System.Windows.Forms.TextBox();
             this.tbIP = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbInterfaceName = new System.Windows.Forms.TextBox();
-            this.resetSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -100,16 +100,24 @@
             // profileSettingToolStripMenuItem
             // 
             this.profileSettingToolStripMenuItem.Name = "profileSettingToolStripMenuItem";
-            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.profileSettingToolStripMenuItem.Text = "Profile Setting";
             this.profileSettingToolStripMenuItem.Click += new System.EventHandler(this.ProfileSettingToolStripMenuItem_Click);
+            // 
+            // resetSettingToolStripMenuItem
+            // 
+            this.resetSettingToolStripMenuItem.Name = "resetSettingToolStripMenuItem";
+            this.resetSettingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.resetSettingToolStripMenuItem.Text = "Reset setting";
+            this.resetSettingToolStripMenuItem.Visible = false;
+            this.resetSettingToolStripMenuItem.Click += new System.EventHandler(this.ResetSettingToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.tbInterfaceName);
             this.panel1.Controls.Add(this.btnSaveConfig);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -120,16 +128,26 @@
             this.panel1.Controls.Add(this.tbGateway);
             this.panel1.Controls.Add(this.tbSubnet);
             this.panel1.Controls.Add(this.tbIP);
-            this.panel1.Location = new System.Drawing.Point(69, 42);
+            this.panel1.Location = new System.Drawing.Point(34, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(285, 231);
+            this.panel1.Size = new System.Drawing.Size(355, 231);
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(20, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Interface Name";
             // 
             // btnSaveConfig
             // 
             this.btnSaveConfig.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveConfig.Location = new System.Drawing.Point(95, 198);
+            this.btnSaveConfig.Location = new System.Drawing.Point(127, 198);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(99, 23);
             this.btnSaveConfig.TabIndex = 9;
@@ -141,7 +159,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 8);
+            this.label5.Location = new System.Drawing.Point(72, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(209, 25);
             this.label5.TabIndex = 8;
@@ -151,7 +169,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(38, 169);
+            this.label4.Location = new System.Drawing.Point(20, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 15);
             this.label4.TabIndex = 7;
@@ -161,7 +179,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(38, 138);
+            this.label3.Location = new System.Drawing.Point(20, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 15);
             this.label3.TabIndex = 6;
@@ -171,7 +189,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 107);
+            this.label2.Location = new System.Drawing.Point(20, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 15);
             this.label2.TabIndex = 5;
@@ -181,7 +199,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 76);
+            this.label1.Location = new System.Drawing.Point(20, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 15);
             this.label1.TabIndex = 4;
@@ -190,70 +208,57 @@
             // tbDNS
             // 
             this.tbDNS.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDNS.Location = new System.Drawing.Point(144, 166);
+            this.tbDNS.Location = new System.Drawing.Point(126, 166);
             this.tbDNS.Name = "tbDNS";
-            this.tbDNS.Size = new System.Drawing.Size(100, 23);
+            this.tbDNS.Size = new System.Drawing.Size(119, 23);
             this.tbDNS.TabIndex = 3;
             this.tbDNS.TabStop = false;
             this.tbDNS.Text = "10.1.1.1";
+            this.tbDNS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbGateway
             // 
             this.tbGateway.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbGateway.Location = new System.Drawing.Point(144, 135);
+            this.tbGateway.Location = new System.Drawing.Point(126, 135);
             this.tbGateway.Name = "tbGateway";
-            this.tbGateway.Size = new System.Drawing.Size(100, 23);
+            this.tbGateway.Size = new System.Drawing.Size(119, 23);
             this.tbGateway.TabIndex = 2;
             this.tbGateway.TabStop = false;
             this.tbGateway.Text = "10.1.1.1";
+            this.tbGateway.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbSubnet
             // 
             this.tbSubnet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSubnet.Location = new System.Drawing.Point(144, 104);
+            this.tbSubnet.Location = new System.Drawing.Point(126, 104);
             this.tbSubnet.Name = "tbSubnet";
-            this.tbSubnet.Size = new System.Drawing.Size(100, 23);
+            this.tbSubnet.Size = new System.Drawing.Size(119, 23);
             this.tbSubnet.TabIndex = 1;
             this.tbSubnet.TabStop = false;
             this.tbSubnet.Text = "255.255.255.0";
+            this.tbSubnet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbIP
             // 
             this.tbIP.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbIP.Location = new System.Drawing.Point(144, 73);
+            this.tbIP.Location = new System.Drawing.Point(126, 73);
             this.tbIP.Name = "tbIP";
-            this.tbIP.Size = new System.Drawing.Size(100, 23);
+            this.tbIP.Size = new System.Drawing.Size(119, 23);
             this.tbIP.TabIndex = 0;
             this.tbIP.TabStop = false;
             this.tbIP.Text = "10.1.1.2";
+            this.tbIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label6
+            // comboBox1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(38, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Interface Name";
-            // 
-            // tbInterfaceName
-            // 
-            this.tbInterfaceName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInterfaceName.Location = new System.Drawing.Point(144, 42);
-            this.tbInterfaceName.Name = "tbInterfaceName";
-            this.tbInterfaceName.Size = new System.Drawing.Size(100, 23);
-            this.tbInterfaceName.TabIndex = 10;
-            this.tbInterfaceName.TabStop = false;
-            this.tbInterfaceName.Text = "Ethernet";
-            // 
-            // resetSettingToolStripMenuItem
-            // 
-            this.resetSettingToolStripMenuItem.Name = "resetSettingToolStripMenuItem";
-            this.resetSettingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.resetSettingToolStripMenuItem.Text = "Reset setting";
-            this.resetSettingToolStripMenuItem.Visible = false;
-            this.resetSettingToolStripMenuItem.Click += new System.EventHandler(this.ResetSettingToolStripMenuItem_Click);
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(126, 42);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(206, 23);
+            this.comboBox1.Sorted = true;
+            this.comboBox1.TabIndex = 12;
             // 
             // Form1
             // 
@@ -302,8 +307,8 @@
         private System.Windows.Forms.Button btnSaveConfig;
         private System.Windows.Forms.ToolStripMenuItem profileSettingToolStripMenuItem;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbInterfaceName;
         private System.Windows.Forms.ToolStripMenuItem resetSettingToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

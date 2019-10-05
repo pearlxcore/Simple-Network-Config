@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,11 +31,11 @@ namespace IP_Config
 
         private void Save_and_exit_Click(object sender, EventArgs e)
         {
+            IP_Config.Properties.Settings.Default.combobox = comboBox1.Text;
             IP_Config.Properties.Settings.Default.IP = tbIP.Text;
             IP_Config.Properties.Settings.Default.Subnet = tbSubnet.Text;
             IP_Config.Properties.Settings.Default.Gateway = tbGateway.Text;
             IP_Config.Properties.Settings.Default.DNS = tbDNS.Text;
-            IP_Config.Properties.Settings.Default.Interfacename = tbInterfaceName.Text;
 
             IP_Config.Properties.Settings.Default.Save();
             panel1.Hide();
@@ -53,7 +54,7 @@ namespace IP_Config
         private void BtnActivateFTP_Click(object sender, EventArgs e)
         {
             Process p = new Process();
-            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address name=\"" + tbInterfaceName.Text  + "\" static " + tbIP.Text + " " + tbSubnet.Text + " " +  tbGateway.Text);
+            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address name=\"" + comboBox1.Text  + "\" static " + tbIP.Text + " " + tbSubnet.Text + " " +  tbGateway.Text);
             p.StartInfo = psi;
             p.StartInfo.Verb = "runas";
             p.StartInfo.CreateNoWindow = false;
@@ -64,7 +65,7 @@ namespace IP_Config
             if(p.ExitCode == 0)
             {
                 Process dns = new Process();
-                ProcessStartInfo dns1 = new ProcessStartInfo("netsh", "interface ipv4 set dnsservers name=\"" + tbInterfaceName.Text + "\"  source=static address=" + tbDNS.Text + " validate=no");
+                ProcessStartInfo dns1 = new ProcessStartInfo("netsh", "interface ipv4 set dnsservers name=\"" + comboBox1.Text + "\"  source=static address=" + tbDNS.Text + " validate=no");
                 dns.StartInfo = dns1;
                 dns.StartInfo.Verb = "runas";
                 dns.StartInfo.CreateNoWindow = false;
@@ -103,7 +104,7 @@ namespace IP_Config
         {
 
             Process p = new Process();
-            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address \"" + tbInterfaceName.Text + "\" dhcp");
+            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address \"" + comboBox1.Text + "\" dhcp");
             p.StartInfo = psi;
             p.StartInfo.Verb = "runas";
             p.StartInfo.CreateNoWindow = false;
@@ -115,7 +116,7 @@ namespace IP_Config
             {
 
                 Process clearDNS = new Process();
-                ProcessStartInfo dns = new ProcessStartInfo("netsh", "interface ip set dns \"" + tbInterfaceName.Text + "\" dhcp");
+                ProcessStartInfo dns = new ProcessStartInfo("netsh", "interface ip set dns \"" + comboBox1.Text + "\" dhcp");
                 clearDNS.StartInfo = dns;
                 clearDNS.StartInfo.Verb = "runas";
                 clearDNS.StartInfo.CreateNoWindow = false;
@@ -160,6 +161,13 @@ namespace IP_Config
             //    btnActivateFTP.Enabled = true;
             //    btnActivateNormal.Enabled = false;
             //}
+
+            foreach (NetworkInterface netInterface in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                comboBox1.Items.Add(netInterface.Name);
+            }
+
+            comboBox1.Text = IP_Config.Properties.Settings.Default.combobox;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

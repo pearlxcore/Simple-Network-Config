@@ -93,5 +93,17 @@ namespace IP_Config.Properties {
                 this["ActivateFTP"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string combobox {
+            get {
+                return ((string)(this["combobox"]));
+            }
+            set {
+                this["combobox"] = value;
+            }
+        }
     }
 }
