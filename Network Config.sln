@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network Config", "IP Config\Network Config.csproj", "{DB00C31B-343D-41D0-8D02-48DBE87340B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network Config", "Network Config\Network Config.csproj", "{DB00C31B-343D-41D0-8D02-48DBE87340B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
