@@ -35,7 +35,10 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.profileSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetNetworkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSaveConfig = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,7 +50,8 @@
             this.tbGateway = new System.Windows.Forms.TextBox();
             this.tbSubnet = new System.Windows.Forms.TextBox();
             this.tbIP = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnCloseSetting = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +61,7 @@
             this.btnActivateFTP.Location = new System.Drawing.Point(21, 33);
             this.btnActivateFTP.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.btnActivateFTP.Name = "btnActivateFTP";
-            this.btnActivateFTP.Size = new System.Drawing.Size(380, 118);
+            this.btnActivateFTP.Size = new System.Drawing.Size(450, 118);
             this.btnActivateFTP.TabIndex = 0;
             this.btnActivateFTP.Text = "Activate PS3 FTP Profile";
             this.btnActivateFTP.UseVisualStyleBackColor = true;
@@ -68,7 +72,7 @@
             this.btnActivateNormal.Location = new System.Drawing.Point(21, 165);
             this.btnActivateNormal.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.btnActivateNormal.Name = "btnActivateNormal";
-            this.btnActivateNormal.Size = new System.Drawing.Size(380, 118);
+            this.btnActivateNormal.Size = new System.Drawing.Size(450, 118);
             this.btnActivateNormal.TabIndex = 1;
             this.btnActivateNormal.Text = "Activate Normal Profile";
             this.btnActivateNormal.UseVisualStyleBackColor = true;
@@ -80,7 +84,7 @@
             this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(422, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(492, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -89,7 +93,8 @@
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.profileSettingToolStripMenuItem,
-            this.resetSettingToolStripMenuItem});
+            this.resetSettingToolStripMenuItem,
+            this.resetNetworkToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -100,22 +105,32 @@
             // profileSettingToolStripMenuItem
             // 
             this.profileSettingToolStripMenuItem.Name = "profileSettingToolStripMenuItem";
-            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.profileSettingToolStripMenuItem.Text = "Profile Setting";
             this.profileSettingToolStripMenuItem.Click += new System.EventHandler(this.ProfileSettingToolStripMenuItem_Click);
             // 
             // resetSettingToolStripMenuItem
             // 
             this.resetSettingToolStripMenuItem.Name = "resetSettingToolStripMenuItem";
-            this.resetSettingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.resetSettingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.resetSettingToolStripMenuItem.Text = "Reset setting";
             this.resetSettingToolStripMenuItem.Visible = false;
             this.resetSettingToolStripMenuItem.Click += new System.EventHandler(this.ResetSettingToolStripMenuItem_Click);
+            // 
+            // resetNetworkToolStripMenuItem
+            // 
+            this.resetNetworkToolStripMenuItem.Name = "resetNetworkToolStripMenuItem";
+            this.resetNetworkToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.resetNetworkToolStripMenuItem.Text = "Reset Network";
+            this.resetNetworkToolStripMenuItem.Visible = false;
+            this.resetNetworkToolStripMenuItem.Click += new System.EventHandler(this.ResetNetworkToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnCloseSetting);
+            this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.btnSaveConfig);
@@ -128,11 +143,33 @@
             this.panel1.Controls.Add(this.tbGateway);
             this.panel1.Controls.Add(this.tbSubnet);
             this.panel1.Controls.Add(this.tbIP);
-            this.panel1.Location = new System.Drawing.Point(34, 42);
+            this.panel1.Location = new System.Drawing.Point(69, 42);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(355, 231);
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(127, 198);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(99, 23);
+            this.btnReset.TabIndex = 13;
+            this.btnReset.Text = "Reset all ";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(126, 42);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(206, 23);
+            this.comboBox1.Sorted = true;
+            this.comboBox1.TabIndex = 12;
             // 
             // label6
             // 
@@ -147,7 +184,7 @@
             // btnSaveConfig
             // 
             this.btnSaveConfig.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveConfig.Location = new System.Drawing.Point(127, 198);
+            this.btnSaveConfig.Location = new System.Drawing.Point(22, 198);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(99, 23);
             this.btnSaveConfig.TabIndex = 9;
@@ -249,26 +286,36 @@
             this.tbIP.Text = "10.1.1.2";
             this.tbIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // comboBox1
+            // textBox1
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(126, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(206, 23);
-            this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 12;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI Light", 8.75F);
+            this.textBox1.Location = new System.Drawing.Point(54, 255);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(343, 23);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Visible = false;
+            // 
+            // btnCloseSetting
+            // 
+            this.btnCloseSetting.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSetting.Location = new System.Drawing.Point(232, 198);
+            this.btnCloseSetting.Name = "btnCloseSetting";
+            this.btnCloseSetting.Size = new System.Drawing.Size(99, 23);
+            this.btnCloseSetting.TabIndex = 14;
+            this.btnCloseSetting.Text = "Close";
+            this.btnCloseSetting.UseVisualStyleBackColor = true;
+            this.btnCloseSetting.Click += new System.EventHandler(this.BtnCloseSetting_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 298);
+            this.ClientSize = new System.Drawing.Size(492, 298);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnActivateNormal);
             this.Controls.Add(this.btnActivateFTP);
+            this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -309,6 +356,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem resetSettingToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem resetNetworkToolStripMenuItem;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnCloseSetting;
     }
 }
 

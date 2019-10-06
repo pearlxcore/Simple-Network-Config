@@ -53,49 +53,71 @@ namespace IP_Config
 
         private void BtnActivateFTP_Click(object sender, EventArgs e)
         {
-            Process p = new Process();
-            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address name=\"" + comboBox1.Text  + "\" static " + tbIP.Text + " " + tbSubnet.Text + " " +  tbGateway.Text);
-            p.StartInfo = psi;
-            p.StartInfo.Verb = "runas";
-            p.StartInfo.CreateNoWindow = false;
-            p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            p.Start();
-            p.WaitForExit();
-
-            if(p.ExitCode == 0)
+            if(tbIP.Text != null && tbSubnet.Text != null)
             {
-                Process dns = new Process();
-                ProcessStartInfo dns1 = new ProcessStartInfo("netsh", "interface ipv4 set dnsservers name=\"" + comboBox1.Text + "\"  source=static address=" + tbDNS.Text + " validate=no");
-                dns.StartInfo = dns1;
-                dns.StartInfo.Verb = "runas";
-                dns.StartInfo.CreateNoWindow = false;
-                dns.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                dns.Start();
-                dns.WaitForExit();
-                
-                if(dns.ExitCode == 0)
+                Process p = new Process();
+                ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address name=\"" + comboBox1.Text + "\" static " + tbIP.Text + " " + tbSubnet.Text + " " + tbGateway.Text);
+
+                textBox1.Text = "interface ip set address name=\"" + comboBox1.Text + "\" static " + tbIP.Text + " " + tbSubnet.Text + " " + tbGateway.Text;
+
+                p.StartInfo = psi;
+                p.StartInfo.Verb = "runas";
+                p.StartInfo.CreateNoWindow = false;
+                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                p.Start();
+                p.WaitForExit();
+
+                if (p.ExitCode == 0)
                 {
-                    MessageBox.Show("Success!", "Network Config");
+                    if (tbDNS.Text != "")
+                    {
+                        Process dns = new Process();
+                        ProcessStartInfo dns1 = new ProcessStartInfo("netsh", "interface ipv4 set dnsservers name=\"" + comboBox1.Text + "\"  source=static address=" + tbDNS.Text + " validate=no");
 
-                    btnActivateFTP.Enabled = false;
-                    btnActivateFTP.Text = "Activated PS3 FTP Profile";
-                    btnActivateNormal.Text = "Activate Normal Profile";
+                        //MessageBox.Show("interface ipv4 set dnsservers name=\"" + comboBox1.Text + "\"  source=static address=" + tbDNS.Text + " validate=no");
+                        dns.StartInfo = dns1;
+                        dns.StartInfo.Verb = "runas";
+                        dns.StartInfo.CreateNoWindow = false;
+                        dns.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        dns.Start();
+                        dns.WaitForExit();
 
-                    btnActivateNormal.Enabled = true;
-                    //IP_Config.Properties.Settings.Default.ActivateFTP = true;
+                        if (dns.ExitCode == 0)
+                        {
+                            MessageBox.Show("Success!", "Network Config");
+                            //IP_Config.Properties.Settings.Default.ActivateFTP = true;
+                            btnActivateFTP.Text = "Activated PS3 FTP Profile";
+                            btnActivateNormal.Text = "Activate Normal Profile";
+                            this.Text = "Network Config For PS3 FTP | Activated FTP Profile";
+                        }
+                        else
+                        {
+                            MessageBox.Show("An error occured while setting up DNS Server.", "Network Config");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Success! DNS setting skipped.", "Network Config");
+                        btnActivateFTP.Text = "Activated PS3 FTP Profile";
+                        btnActivateNormal.Text = "Activate Normal Profile";
+                        this.Text = "Network Config For PS3 FTP | Activated FTP Profile";
+
+                    }
+
+
                 }
                 else
                 {
-                    MessageBox.Show("An error occured while setting up DNS Server", "Network Config");
+                    MessageBox.Show("An error occured while setting up network", "Network Config");
                     return;
                 }
-
             }
             else
             {
-                MessageBox.Show("An error occured while setting up network", "Network Config");
-                return;
+                MessageBox.Show("Please specify IP Address and Subnet Mask!", "Network Config");
             }
+            
 
 
         }
@@ -129,15 +151,15 @@ namespace IP_Config
                     MessageBox.Show("Success!", "Network Config");
                     btnActivateFTP.Text = "Activate PS3 FTP Profile";
                     btnActivateNormal.Text = "Activated Normal Profile";
-                    btnActivateFTP.Enabled = true;
-                    btnActivateNormal.Enabled = false;
+                    this.Text = "Network Config For PS3 FTP | Activated Normal Profile";
+
 
                     //IP_Config.Properties.Settings.Default.ActivateFTP = false;
                 }
                 else
                 {
                     MessageBox.Show("An error occured while clearing DNS Server", "Network Config");
-
+                    return;
                 }
             }
             else
@@ -168,6 +190,10 @@ namespace IP_Config
             }
 
             comboBox1.Text = IP_Config.Properties.Settings.Default.combobox;
+            tbIP.Text = IP_Config.Properties.Settings.Default.IP;
+            tbSubnet.Text = IP_Config.Properties.Settings.Default.Subnet;
+            tbGateway.Text = IP_Config.Properties.Settings.Default.Gateway;
+            tbDNS.Text = IP_Config.Properties.Settings.Default.DNS;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -181,6 +207,35 @@ namespace IP_Config
             //IP_Config.Properties.Settings.Default.Reset();
             //btnActivateFTP.Enabled = true;
             //btnActivateNormal.Enabled = true;
+        }
+
+        private void ResetNetworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //netsh interface ip reset
+            Process p = new Process();
+            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip reset");
+            p.StartInfo = psi;
+            p.StartInfo.Verb = "runas";
+            p.StartInfo.CreateNoWindow = false;
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            p.Start();
+            p.WaitForExit();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            comboBox1.Text = "";
+            tbIP.Text = "";
+            tbSubnet.Text = "";
+            tbGateway.Text = "";
+            tbDNS.Text = "";
+        }
+
+        private void BtnCloseSetting_Click(object sender, EventArgs e)
+        {
+            panel1.Hide();
+            btnActivateFTP.Enabled = true;
+            btnActivateNormal.Enabled = true;
         }
     }
 }
